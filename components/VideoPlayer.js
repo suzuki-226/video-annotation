@@ -9,9 +9,11 @@ const VideoPlayer = ({ videoUrl }) => {
         return () => player.dispose();
     }, []);
 
-    return <video ref={videoRef} className="video-js" controls>
-    <source src={`/sample.mp4`} type="video/mp4" />
-</video>;
+    return (
+    <video ref={videoRef} className="video-js" controls>
+    <source src={videoUrl} type="video/mp4" />
+</video>
+    );
 };
 
 export default VideoPlayer;
