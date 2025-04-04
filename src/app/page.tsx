@@ -12,7 +12,7 @@ export default function Home() {
         <h1 className="text-2xl font-semibold">動画アノテーションツール</h1>
         
         {/* 動画プレイヤーを追加 */}
-        <VideoPlayer videoUrl="/sample.mp4" /> {/* sample.mp4はpublicフォルダに配置 */}
+        <VideoPlayer videoUrl="/sample.mp4" /> {/*videoUrlの渡し方は不要*/}
 
         {/* アノテーションツールを追加 */}
         <AnnotationTool annotations={annotations} setAnnotations={setAnnotations} />

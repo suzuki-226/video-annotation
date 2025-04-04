@@ -8,11 +8,11 @@ const VideoPlayer = ({ videoUrl }) => {
     useEffect(() => {
         const player = videojs(videoRef.current);
         return () => player.dispose();
-    }, []);
+    }, [videUrl]);
 
     return (
     <video ref={videoRef} className="video-js" controls>
-    <source src="/sample.mp4" type="video/mp4" />
+    <source src={videoUrl} type="video/mp4" />
 </video>
     );
 };
