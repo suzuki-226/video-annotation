@@ -5,44 +5,29 @@ import AnnotationTool from "../components/AnnotationTool";  // AnnotationToolを
 
 export default function Home() {
   const [annotations, setAnnotations] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState("/sample1.mp4");
+ 
+  const handleVideoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedVideo(e.target.value);
+    setAnnotations([]); // 動画変えたときにアノテーションをリセット
+  };
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <h1 className="text-2xl font-semibold">動画アノテーションツール</h1>
-        
-        {/* 動画プレイヤーを追加 */}
-        <VideoPlayer videoUrl="/sample.mp4" /> {/*videoUrlの渡し方は不要*/}
+    <div className="p-8">
+      <h1 className="text-2xl font-semibold mb-4">動画アノテーションツール</h1>
 
-        {/* アノテーションツールを追加 */}
-        <AnnotationTool annotations={annotations} setAnnotations={setAnnotations} />
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Go to nextjs.org →
-        </a>
-      </footer>
+      {/* ▼ 動画選択セレクトボックス */}
+      <select onChange={handleVideoChange} value={selectedVideo} className="mb-4 p-2 border rounded">
+        <option value="/sample1.mp4">動画①：sample1.mp4</option>
+        <option value="/sample2.mp4">動画②：sample2.mp4</option>
+        <option value="/sample3.mp4">動画③：sample3.mp4</option>
+      </select>
+
+      {/* ▼ 動画プレイヤー */}
+      <VideoPlayer videoUrl={selectedVideo} />
+
+      {/* ▼ アノテーションツール */}
+      <AnnotationTool annotations={annotations} setAnnotations={setAnnotations} />
     </div>
   );
 }
